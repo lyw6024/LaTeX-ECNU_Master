@@ -1,0 +1,111 @@
+% 用 xelatex 编译
+
+\documentclass{ecnumaster}
+
+%%%%% ===== 自定义命令
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+\renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
+\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+\renewcommand{\thetable}{\arabic{chapter}-\arabic{table}}
+
+\usepackage{gbt7714}
+
+\begin{document}
+
+%%%%% ===== 中文封面信息
+\graduateyear{2021} % 毕业年份
+\class{} % 分类号（数值线性代数是 O241.6）
+\ctitle{\uline{论文\linebreak 题\hfill 目}}
+\def\cctitle{论文题目} % 在原创性声明中使用, 不能出现手工换行
+\caffil{x学院}
+\cmajor{工程硕士} % 计算数学
+\cdirection{计算机技术} % 数值代数
+\csupervisor{张三 教授}
+\cauthor{姓名}
+\studentid{00}
+\cdate{20xx 年 xx 月 xx 日}
+
+%%%%% ===== 英文封面信息
+\etitle{\uline{Title}}
+\eaffil{The School of X}
+\emajor{X} % Computational Mathematics
+\edirection{X} % Numerical Algebra
+\esupervisor{Zhang San (Professor)}
+\eauthor{Name}
+\edate{}
+
+%%%%% ===== 生成封面 =====
+\newgeometry{top=2.0cm,bottom=2.0cm,left=2.5cm,right=2.5cm}
+{ \renewcommand{\baselinestretch}{1.6} \makecover }
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%%%%% ===== 原创性声明与著作权使用声明 =====
+\include{headers/Declaration}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%%%%% ===== 答辩委员会成员 =====
+\include{headers/Committee}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+\frontmatter
+\restoregeometry
+
+{\pagestyle{plain}
+%%%%% ===== 中文摘要 =====
+\pagestyle{plain}
+\include{headers/Abstract_chs}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%%%%% ===== 英文摘要 =====
+\include{headers/Abstract_eng}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%%%%% ===== 生成目录
+\setcounter{tocdepth}{2}
+\phantomsection\pdfbookmark[0]{目录}{ccontents}
+\tableofcontents
+\listoffigures % 插图目录
+\listoftables  % 表格目录
+\clearpage{\pagestyle{empty}\cleardoublepage}
+}
+
+
+
+%%%%%% ===== 正文部分 ===== %%%%%
+\mainmatter
+\linespread{1.4}\selectfont
+
+
+
+      \include{chapters/chapter1}
+      \clearpage{\pagestyle{empty}\cleardoublepage}
+
+      \include{chapters/chapter2}
+      \clearpage{\pagestyle{empty}\cleardoublepage}
+
+      \include{chapters/chapter3}
+      \clearpage{\pagestyle{empty}\cleardoublepage}
+
+      \include{chapters/chapter4}
+      \clearpage{\pagestyle{empty}\cleardoublepage}
+
+      % 根据章节数可继续添加chapter
+
+
+      \backmatter
+      \linespread{1.1}\selectfont
+
+\pagestyle{plain}
+
+%%%% ===== 参考文献 =====
+\addcontentsline{toc}{chapter}{参考文献}
+\bibliography{report}
+\clearpage{\pagestyle{empty}\cleardoublepage}
+
+%其它后附(致谢、研究成果等)
+\include{appendix/appendixPage}
+
+\end{document}
+
